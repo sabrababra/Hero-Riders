@@ -2,6 +2,9 @@ import practice from '../icon/practice.svg';
 import curriculum from '../icon/curriculum.svg';
 import scheduling from '../icon/scheduling.svg';
 
+import bikeImg from '../img/bike.jpg';
+import carImg from '../img/car.jpg';
+
 export const servicesData = [
     {
         id: 1,
@@ -22,4 +25,19 @@ export const servicesData = [
         text: 'Many learners have busy schedules, so a driving school should offer flexible scheduling options to accommodate their needs. This can include evening and weekend lessons, as well as online learning resources that learners can access at their convenience.'
     },
 
+];
+
+export const packageData = [
+    {
+        id: 1,
+        img: bikeImg,
+        name: 'Bike package',
+        price: 100
+    },
+    {
+        id: 2,
+        img: carImg,
+        name: 'Car package',
+        price: 200
+    },
 ]

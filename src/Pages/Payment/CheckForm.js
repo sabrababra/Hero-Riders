@@ -3,12 +3,12 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const CheckForm = ({ booking }) => {
+const CheckForm = ({ booking, user }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState("");
 
-    const { _id, productId, productName, price, buyerName, buyerEmail } = booking;
+    const { id, img, name, price } = booking;
 
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
@@ -17,11 +17,10 @@ const CheckForm = ({ booking }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('https://bike-resale-server.vercel.app/create-payment-intent', {
+        fetch('https://hero-riders-server.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                // 'authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({ price })
         })
@@ -64,8 +63,8 @@ const CheckForm = ({ booking }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: buyerName,
-                        email: buyerEmail
+                        name: user?.name,
+                        email: user?.email
                     },
                 },
             },
@@ -83,18 +82,17 @@ const CheckForm = ({ booking }) => {
 
             //save payment
             const payment = {
-                productId: productId,
+                productId: id,
                 transactionId: paymentIntent.id,
-                productName: productName,
-                email: buyerEmail,
-                name: buyerName,
+                productName: name,
+                email: user?.email,
+                name: user?.name,
                 price: parseInt(price),
             }
-            fetch(`https://bike-resale-server.vercel.app/payments/${_id}`, {
+            fetch(`https://bike-resale-server.vercel.app/payments`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    'authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(payment)
             }).then(res => res.json())
@@ -102,7 +100,7 @@ const CheckForm = ({ booking }) => {
                     setProcessing(false);
                     console.log(data);
                     toast.success("Payment Successfully");
-                    navigate('/dashboard/booking')
+                    navigate('/')
 
                 })
             console.log(paymentMethod, processing);

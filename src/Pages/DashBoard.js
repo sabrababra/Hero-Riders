@@ -16,7 +16,7 @@ const DashBoard = () => {
 
     const getData = () => {
         const userData = JSON.parse(localStorage.getItem('user'));
-        fetch(`http://localhost:5000/api/user-list?page=${page}&size=${size}`, {
+        fetch(`https://hero-riders-server.vercel.app/api/user-list?page=${page}&size=${size}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -75,7 +75,7 @@ const DashBoard = () => {
 
     const handleBlockUsers=()=>{
         const token=JSON.parse(localStorage.getItem('user'))
-        fetch(`http://localhost:5000/api/update-user`, {
+        fetch(`https://hero-riders-server.vercel.app/api/update-user`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

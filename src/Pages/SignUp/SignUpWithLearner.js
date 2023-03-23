@@ -29,7 +29,7 @@ const SignUpWithLearner = () => {
         }
         else if (data.password === data.confirm) {
 
-            fetch(`http://localhost:5000/api/signup`, {
+            fetch(`https://hero-riders-server.vercel.app/api/signup`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

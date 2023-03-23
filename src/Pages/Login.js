@@ -22,7 +22,7 @@ const Login = () => {
         e.preventDefault();
         console.log(formData);
 
-        fetch(`http://localhost:5000/api/login`, {
+        fetch(`https://hero-riders-server.vercel.app/api/login`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

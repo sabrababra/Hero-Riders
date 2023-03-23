@@ -42,6 +42,13 @@ const Header = () => {
                                     Dashboard
                                 </Link>
                             </li>}
+                            {
+                                user?.userRole==='learner' &&
+                                <li>
+                                <Link to='/package' className="justify-between">
+                                    Buy package
+                                </Link>
+                            </li>}
                             <li><p
                                 onClick={() => {
                                     localStorage.clear();

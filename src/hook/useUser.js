@@ -9,7 +9,7 @@ const useUser = (data) => {
 
     useEffect(() => {
         if (userData?.data?.email) {
-            fetch(`http://localhost:5000/api/user`, {
+            fetch(`https://hero-riders-server.vercel.app/api/user`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
